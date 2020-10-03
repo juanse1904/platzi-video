@@ -1,35 +1,37 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {loginRequest} from '../actions'
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';
 import '../assets/styles/components/logIn.scss';
 
-const login = () => {
+const login = (props) => {
   const [form, setValues] = useState({
     email: '',
   });
-  const HandleInput = event =>{
+  const HandleInput = (event) => {
     setValues({
       ...form,
-      [event.target.name]: event.target.value
-    })
-  }
-
-  const HandleSubmit = event =>{
+      [event.target.name]: event.target.value,
+    });
+  };
+  const dispatch = useDispatch();
+  const HandleSubmit = (event) => {
     event.preventDefault();
-    console.log(form);
-
-  }
-
+    dispatch({
+      type: 'LOGIN_REQUEST',
+      payload: form,
+    });
+    props.history.push('/');
+  };
+  
   return (
     <section className='login'>
       <section className='login__container'>
         <h2>Inicia sesión</h2>
         <form className='login__container--form' onSubmit={HandleSubmit}>
           <input
-            name='correo'
+            name='email'
             className='input'
             type='text'
             placeholder='Correo'
@@ -74,9 +76,5 @@ No tienes ninguna cuenta
 
   );
 };
-const mapDispatchToProps = {
-  loginRequest,
 
-};
-
-export default connect(null, mapDispatchToProps)(login);
+export default login;
