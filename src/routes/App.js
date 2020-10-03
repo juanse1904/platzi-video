@@ -7,6 +7,7 @@ import Login from '../containers/Login';
 import Register from '../containers/Register';
 import notFound from '../containers/NotFound';
 import Layout from '../components/Layout';
+import Player from '../components/Player';
 /* se  crea un directorio de las rutas deseadas y se exporta esa variable, en este caso App */
 const App = () => (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const App = () => (
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/registrer' component={Register} />
+        <Route exact path='/player/:id' component={Player} />
         <Route component={notFound} />
       </Switch>
     </Layout>
