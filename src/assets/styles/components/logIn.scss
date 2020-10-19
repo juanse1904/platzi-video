@@ -74,3 +74,13 @@
   .login__container--register a:hover {
     text-decoration: underline;
   }
+  @media (max-width:670px){
+    .login__container {
+      margin-top:15px;
+      width:80%;     
+    }
+    .login {
+      
+      justify-content: flex-start;
+    }
+  }
