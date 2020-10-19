@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import gravatar from '../utils/gravatar';
 import '../assets/styles/components/Header.scss';
 import logo from '../assets/static/logo-platzi-video-BW2.png';
@@ -8,6 +9,7 @@ import userIcon from '../assets/static/user-icon.png';
 
 const Header = (props) => {
   const user = useSelector(state => state.user);
+  const { isLogin, isRegister } = props;
   const hasuser = Object.keys(user).length > 0;
   const dispatch = useDispatch();
   const handleLogout = () => {
@@ -16,8 +18,13 @@ const Header = (props) => {
       payload: {},
     });
   };
+  console.log(props);
+  const headerClass = classNames('header', {
+    isLogin,
+    isRegister,
+  });
   return (
-    <header className='header'>
+    <header className={headerClass}>
       <Link to='/'>
         <img className='header__img' src={logo} alt='Platzi Video' />
       </Link>
